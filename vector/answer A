@@ -1,0 +1,93 @@
+思路
+
+1.关键是优化问题，如果直接用map<string,vector<int>>最后一个用例会超时，因为本身对map和string的操作相比char + 整数来说更耗时间。
+2.自己写一个简单的散列函数将名字散列为vector的整数索引来代替map，另外使用char数组存储名字而不是string，输入输出最好也换成scanf和printf而不是cin、cout。
+
+超时代码
+
+#include<iostream>
+#include<vector>
+#include<map>
+#include<algorithm>
+using namespace std;
+ 
+int main()
+{
+    int N,K;
+    while(cin >> N >> K)
+    {
+        map<string,vector<int>> students;
+        students.clear();
+        for(int i = 0;i < K;i++)
+        {
+            int course,num;
+            cin >> course >> num;
+            for(int j = 0;j < num;j++)
+            {
+                string name;
+                cin >> name;
+                students[name].push_back(course);
+            }
+        }
+        for(int i = 0;i < N;i++)
+        {
+            string name;
+            cin >> name;
+            cout << name << " " << students[name].size();
+            sort(students[name].begin(),students[name].end());
+            for(int j = 0;j < students[name].size();j++)
+            {
+                cout << " " << students[name][j];
+            }
+            cout << endl;
+        }
+    }
+}
+
+AC代码
+#include<iostream>
+#include<vector>
+#include<map>
+#include<algorithm>
+using namespace std;
+const int maxnum = 26 * 26 * 26 * 10 + 1;
+ 
+int HashName(char* name)
+{
+    return (name[0] - 'A') * 26 * 26 * 10 +
+           (name[1] - 'A') * 26 * 10 +
+           (name[2] - 'A') * 10 +
+           (name[3] - '0');
+}
+ 
+int main()
+{
+    int N,K;
+    while(cin >> N >> K)
+    {
+        vector<vector<int>> students(maxnum);
+        char name[5];
+        for(int i = 0;i < K;i++)
+        {
+            int course,num;
+            cin >> course >> num;
+            for(int j = 0;j < num;j++)
+            {
+                scanf("%s",name);
+                students[HashName(name)].push_back(course);
+            }
+        }
+        for(int i = 0;i < N;i++)
+        {
+            scanf("%s",name);
+            int index = HashName(name);
+            printf("%s %lu", name, students[index].size());
+            sort(students[index].begin(),students[index].end());
+            for(int j = 0;j < students[index].size();j++)
+            {
+                cout << " " << students[index][j];
+            }
+            cout << endl;
+        }
+    }
+}

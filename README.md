@@ -6,8 +6,7 @@ C++ code training
 
 关于vector<vector<int> > A类型
   
-  1、定义
-  
+  1、定义  
      vector<vector<int> > A;//正确的定义方式
      
   2、插入元素

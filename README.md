@@ -13,7 +13,7 @@ C++ code training
      //正确的插入方式     
      vector\<vector\<int\> \> A;      
      //A.push_back里必须是vector         
-     vector<int> B;       
+     vector\<int\> B;       
      B.push_back(0);       
      B.push_back(1);       
      B.push_back(2);       

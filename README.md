@@ -7,34 +7,19 @@ C++ code training
 关于vector<vector<int> > A类型
   
   1、定义  
-     vector<vector<int> > A;//正确的定义方式
-     
-  2、插入元素
-  
-     若想定义A = [[0,1,2],[3,4,5]]，则：
-     
-     //正确的插入方式
-     
-     vector<vector<int> > A;
-     
-     //A.push_back里必须是vector
-     
-     vector<int> B;
-     
-     B.push_back(0);
-     
-     B.push_back(1);
-     
-     B.push_back(2);
-     
-     A.push_back(B);
-     
-     B.clear();
-     
-     B.push_back(3);
-     
-     B.push_back(4);
-     
-     B.push_back(5);
-     
-     A.push_back(B);
+     vector<vector<int> > A;//正确的定义方式  
+  2、插入元素  
+     若想定义A = [[0,1,2],[3,4,5]]，则：  
+     //正确的插入方式     
+     vector<vector<int> > A;      
+     //A.push_back里必须是vector         
+     vector<int> B;       
+     B.push_back(0);       
+     B.push_back(1);       
+     B.push_back(2);       
+     A.push_back(B);       
+     B.clear();       
+     B.push_back(3);       
+     B.push_back(4);      
+     B.push_back(5);       
+     A.push_back(B);  

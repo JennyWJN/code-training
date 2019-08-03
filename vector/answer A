@@ -91,3 +91,44 @@ int main()
         }
     }
 }
+
+my answer
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    int n,k,courseNo,studentNumber;
+    string studentID;
+    vector<string> stuID;//学生名与学号
+    map<string,vector<int> > courseNodes;//学生选课列表
+    cin >> n >> k;//n：学生数，k：课程数
+    for(int i=0;i<k;i++){
+        cin >> courseNo >> studentNumber;
+        for(int j=0;j<studentNumber;j++){
+            cin >> studentID;
+            courseNodes[studentID].push_back(courseNo);
+        }
+    }
+    for(int i=0;i<n;i++){
+        cin >> studentID;
+        stuID.push_back(studentID);
+    }
+    for(int i=0;i<n;i++){
+        cout << stuID[i] << " ";
+        cout << courseNodes[stuID[i]].size() << " ";
+        for(int j=0;j<courseNodes[stuID[i]].size();j++){
+            sort(courseNodes[stuID[i]].begin(),courseNodes[stuID[i]].end());
+            cout << courseNodes[stuID[i]][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+

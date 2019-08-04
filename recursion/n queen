@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+//a为当前排列，hashTable记录整数x是否已在a中
+int a[9]={0},result[92]={0};
+bool hashTable[9]={false};
+int cunt=1;
+
+int int2num(int a[]){
+    int result=0;
+    for(int i=1;i<9;i++){
+        result=result*10+a[i];
+    }
+    return result;
+}
+
+void generateP(int index){
+    if(index == 9){
+        cunt++;
+        result[cunt]=int2num(a);
+        return;
+    }
+    for(int x=1;x<9;x++){//行数
+        if(hashTable[x]==false){
+            bool flag=true;
+            for(int pre=1;pre<index;pre++){//列数
+                if(abs(a[pre]-x)==index-pre){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag){
+                hashTable[x]=true;
+                a[index]=x;
+                generateP(index+1);
+                hashTable[x]=false;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int n,m;
+    vector<int> x;
+    cin>>n;
+    generateP(1);
+    sort(result,result+92);
+    for(int i=0;i<n;i++){
+        cin>>m;
+        x.push_back(m);
+    }
+    for(int i=0;i<n;i++){
+        printf("%d\n",result[x[i]+1]);
+    }
+    return 0;
+}

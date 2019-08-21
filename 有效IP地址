@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstring>
+#include <stdlib.h>
+using namespace std;
+
+void isValid(string IP){
+    char* ip;
+    ip = (char*)IP.c_str();
+    int i=1;
+    char* token = strtok(ip,".");
+    if(atoi(token)>255) {
+        cout<<"illegal"<<endl;
+        return;
+    }
+    if(strlen(token)>1&&token[0]=='0'){
+        cout<<"illegal"<<endl;
+        return;
+    }
+    while(token!=NULL&&i<4){
+        token=strtok(NULL,".");
+        if(token==NULL) break;
+        if(atoi(token)>255) {
+            cout<<"illegal"<<endl;
+            return;
+        }
+        if(strlen(token)>1&&token[0]=='0'){
+            cout<<"illegal"<<endl;
+            return;
+        }
+        i++;
+    }
+    if(i!=4){
+        cout<<"illegal"<<endl;
+        return;
+    }
+    cout<<"legal"<<endl;
+    return;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        string IP;
+        cin>>IP;
+        isValid(IP);
+    }
+    return 0;
+}
+
+
